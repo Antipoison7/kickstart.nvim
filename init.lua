@@ -102,7 +102,7 @@ vim.g.have_nerd_font = false
 vim.o.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
--- vim.o.relativenumber = true
+vim.o.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.o.mouse = 'a'
@@ -234,6 +234,9 @@ end
 local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
 
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+
 -- [[ Configure and install plugins ]]
 --
 --  To check the current status of your plugins, run
@@ -247,7 +250,7 @@ rtp:prepend(lazypath)
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
-  'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
+  -- 'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
 
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
@@ -284,6 +287,44 @@ require('lazy').setup({
     },
   },
 
+  {
+    'ThePrimeagen/harpoon',
+    branch = 'harpoon2',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+  },
+  {
+    'ThePrimeagen/harpoon',
+    branch = 'harpoon2',
+    config = function()
+      local harpoon = require 'harpoon'
+      ---@diagnostic disable-next-line: missing-parameter
+      harpoon:setup()
+      local function map(lhs, rhs, opts)
+        vim.keymap.set('n', lhs, rhs, opts or {})
+      end
+      map('<leader>a', function()
+        harpoon:list():add()
+      end)
+      map('<leader>h', function()
+        harpoon.ui:toggle_quick_menu(harpoon:list())
+      end)
+      map('<a-1>', function()
+        harpoon:list():select(1)
+      end)
+      map('<a-2>', function()
+        harpoon:list():select(2)
+      end)
+      map('<a-3>', function()
+        harpoon:list():select(3)
+      end)
+      map('<a-4>', function()
+        harpoon:list():select(4)
+      end)
+      map('<a-5>', function()
+        harpoon:list():next()
+      end)
+    end,
+  },
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
   --
   -- This is often very useful to both group configuration, as well as handle
@@ -429,6 +470,7 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
       vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
+      vim.keymap.set('n', '<leader>f', builtin.find_files, { desc = 'Search [F]iles' })
       vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
       vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
       vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
@@ -742,12 +784,12 @@ require('lazy').setup({
     cmd = { 'ConformInfo' },
     keys = {
       {
-        '<leader>f',
+        '<leader>b',
         function()
           require('conform').format { async = true, lsp_format = 'fallback' }
         end,
         mode = '',
-        desc = '[F]ormat buffer',
+        desc = '[B]format buffer',
       },
     },
     opts = {
