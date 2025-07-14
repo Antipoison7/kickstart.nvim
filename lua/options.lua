@@ -1,4 +1,3 @@
--- [[ Setting options ]]
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
@@ -57,6 +56,11 @@ vim.o.splitbelow = true
 vim.o.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
+-- Tab sizing
+vim.opt.tabstop = 8
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 2
+
 -- Preview substitutions live, as you type!
 vim.o.inccommand = 'split'
 
@@ -71,4 +75,4 @@ vim.o.scrolloff = 10
 -- See `:help 'confirm'`
 vim.o.confirm = true
 
--- vim: ts=4 sts=4 sw=4 et
+-- vim: ts=2 sts=2 sw=2 et
