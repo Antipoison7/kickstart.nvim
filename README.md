@@ -71,12 +71,17 @@ too - it's ignored in the kickstart repo to make maintenance easier, but it's
 
 > [!NOTE]
 > If following the recommended step above (i.e., forking the repo), replace
-> `dam9000` with `<your_github_username>` in the commands below
+> `Antipoison7` with `<your_github_username>` in the commands below
 
 <details><summary> Linux and Mac </summary>
 
+HTTPS
 ```sh
-git clone https://github.com/Antipoison7/kickstart-modular.nvim.git "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim
+git clone https://github.com/Antipoison7/kickstart.nvim.git "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim
+```
+SSH
+```sh
+git clone git@github.com:Antipoison7/kickstart.nvim.git "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim
 ```
 
 </details>
@@ -85,14 +90,24 @@ git clone https://github.com/Antipoison7/kickstart-modular.nvim.git "${XDG_CONFI
 
 If you're using `cmd.exe`:
 
+HTTPS
 ```
-git clone https://github.com/Antipoison7/kickstart-modular.nvim.git "%localappdata%\nvim"
+git clone https://github.com/Antipoison7/kickstart.nvim.git "%localappdata%\nvim"
+```
+SSH
+```
+git clone git@github.com:Antipoison7/kickstart.nvim.git "%localappdata%\nvim"
 ```
 
 If you're using `powershell.exe`
 
+HTTPS
 ```
 git clone https://github.com/Antipoison7/kickstart-modular.nvim.git "${env:LOCALAPPDATA}\nvim"
+```
+SSH
+```
+git clone git@github.com:Antipoison7/kickstart-modular.nvim.git "${env:LOCALAPPDATA}\nvim"
 ```
 
 </details>
