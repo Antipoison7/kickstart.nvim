@@ -11,15 +11,16 @@ return {
       local harpoon = require 'harpoon'
       ---@diagnostic disable-next-line: missing-parameter
       harpoon:setup()
+
       local function map(lhs, rhs, opts)
         vim.keymap.set('n', lhs, rhs, opts or {})
       end
       map('<leader>a', function()
         harpoon:list():add()
-      end)
-      map('<leader>h', function()
+      end, {desc = "[a]dd to Harpoon Buffer"})
+      map('<leader>A', function()
         harpoon.ui:toggle_quick_menu(harpoon:list())
-      end)
+      end, {desc = "[A]ccess Harpoon Buffer"})
       map('<a-1>', function()
         harpoon:list():select(1)
       end)
